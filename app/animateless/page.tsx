@@ -154,26 +154,23 @@ const page = () => {
         });
 
     return (
-        <div className='bg-stone-400'>
+        <div className="bg-stone-400">
             <div className="bg-amber-400 mb-4 text-white text-3xl">
                 <h1 className="text-center font-extrabold py-12 text-6xl text-red-600">
                     Animate.css
                 </h1>
             </div>
-            <div className="flex flex-wrap w-full justify-around ">
-                <div className={`flex flex-col items-center gap-4 }`}>
+            <div className="flex flex-wrap w-full justify-around gap-4">
+                <div className="flex flex-col items-center gap-4 w-[80%]">
                     {botoes(...primeiroQuarto)}
                 </div>
-
-                <div className={`flex flex-col items-center gap-4 }`}>
+                <div className="flex flex-col items-center gap-4 w-[80%]">
                     {botoes(...segundoQuarto)}
                 </div>
-
-                <div className={`flex flex-col items-center gap-4 }`}>
+                <div className="flex flex-col items-center gap-4 w-[80%]">
                     {botoes(...terceiroQuarto)}
                 </div>
-
-                <div className={`flex flex-col items-center gap-4 }`}>
+                <div className="flex flex-col items-center gap-4 w-[80%]">
                     {botoes(...quartoQuarto)}
                 </div>
             </div>
