@@ -3,7 +3,7 @@ import React from 'react';
 import 'animate.css';
 
 const buttonStyle =
-    'text-white text-3xl border border-indigo-950 rounded bg-slate-600 py-2 px-8 w-full'; 
+    'text-white text-3xl border border-indigo-950 rounded bg-slate-600 py-2 px-8 w-full';
 
 const page = () => {
     // adicionar classes de animação, esperar a animação terminar e remover a classe
@@ -154,21 +154,28 @@ const page = () => {
         });
 
     return (
-        <div className="flex flex-wrap w-full justify-around ">
-            <div className={`flex flex-col items-center gap-4 }`}>
-                {botoes(...primeiroQuarto)}
+        <div className='bg-stone-400'>
+            <div className="bg-amber-400 mb-4 text-white text-3xl">
+                <h1 className="text-center font-extrabold py-12 text-6xl text-red-600">
+                    Animate.css
+                </h1>
             </div>
+            <div className="flex flex-wrap w-full justify-around ">
+                <div className={`flex flex-col items-center gap-4 }`}>
+                    {botoes(...primeiroQuarto)}
+                </div>
 
-            <div className={`flex flex-col items-center gap-4 }`}>
-                {botoes(...segundoQuarto)}
-            </div>
+                <div className={`flex flex-col items-center gap-4 }`}>
+                    {botoes(...segundoQuarto)}
+                </div>
 
-            <div className={`flex flex-col items-center gap-4 }`}>
-                {botoes(...terceiroQuarto)}
-            </div>
+                <div className={`flex flex-col items-center gap-4 }`}>
+                    {botoes(...terceiroQuarto)}
+                </div>
 
-            <div className={`flex flex-col items-center gap-4 }`}>
-                {botoes(...quartoQuarto)}
+                <div className={`flex flex-col items-center gap-4 }`}>
+                    {botoes(...quartoQuarto)}
+                </div>
             </div>
         </div>
     );
