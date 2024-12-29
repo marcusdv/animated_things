@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import 'animate.css';
 
+// Estilos dos botões e das divs pais delas
 const buttonStyle =
-    'text-white text-2xl border overflow-hidden border-indigo-950 rounded bg-slate-600 py-2  w-full';
+    'text-white font-semibold text-2xl border-2 overflow-hidden border-oxford-blue rounded bg-lapis-lazuli-blue py-2 w-full';
 
 const divButtons =
     'flex flex-col items-center gap-4 w-[80%] md:w-[30%] xl:w-[20%] ';
@@ -161,23 +162,25 @@ const Page = () => {
         });
 
     return (
-        <div className="bg-stone-400 h-screen w-full">
+        <div className="bg-animateless-bg w-full">
+            {/* Titulo */}
             <div
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="bg-amber-400 mb-4 text-white text-center justify-center max-w-full overflow-hidden"
+                className="bg-icterine-yellow mb-4 text-white text-center justify-center max-w-full overflow-hidden"
             >
                 <h1
-                    className={`text-center select-none font-extrabold py-12 text-5xl sm:text-6xl text-red-600 ${
+                    className={`text-center select-none font-extrabold py-12 text-5xl sm:text-6xl text-crimson-red ${
                         isHovered
-                            ? `animate__animated animate__${effects[randomIndex]} animate__infinite infinite`
+                            ? `animate__animated animate__${effects[randomIndex]}`
                             : ''
                     }`}
                 >
-                    Animate.css
+                    Animateless
                 </h1>
             </div>
-            <div className="flex flex-wrap justify-around gap-4">
+            {/* Botões */}
+            <div className="flex flex-wrap justify-around gap-4 mt-8 overflow-hidden">
                 <div className={divButtons}>{botoes(...primeiroQuarto)}</div>
                 <div className={divButtons}>{botoes(...segundoQuarto)}</div>
                 <div className={divButtons}>{botoes(...terceiroQuarto)}</div>
