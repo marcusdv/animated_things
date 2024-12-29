@@ -1,23 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import 'animate.css';
 
 const buttonStyle =
-    'text-white text-2xl border border-indigo-950 rounded bg-slate-600 py-2 px-8 w-full';
+    'text-white text-2xl border overflow-hidden border-indigo-950 rounded bg-slate-600 py-2 px-8 w-full';
 
-const page = () => {
-    // adicionar classes de animação, esperar a animação terminar e remover a classe
-    const handleClick = (
-        e: React.MouseEvent<HTMLButtonElement>,
-        classe: string[]
-    ) => {
-        const botaoClicado = e.currentTarget;
-        botaoClicado.classList.add(...classe);
+const divButtons =
+    'flex flex-col items-center gap-4 w-[80%] md:w-[30%] xl:w-[20%] ';
 
-        botaoClicado.addEventListener('animationend', () => {
-            botaoClicado.classList.remove(...classe);
-        });
-    };
+const Page = () => {
+    const [isHovered, setIsHovered] = useState(false);
 
     const effects = [
         'bounce',
@@ -119,6 +111,21 @@ const page = () => {
         'slideOutUp',
     ];
 
+    // adicionar classes de animação, esperar a animação terminar e remover a classe
+    const handleClick = (
+        e: React.MouseEvent<HTMLButtonElement>,
+        classe: string[]
+    ) => {
+        const botaoClicado = e.currentTarget;
+        botaoClicado.classList.add(...classe);
+
+        botaoClicado.addEventListener('animationend', () => {
+            botaoClicado.classList.remove(...classe);
+        });
+    };
+
+    const randomIndex = Math.floor(Math.random() * effects.length);
+
     // Para dividir a array em quatro partes (primeiro 1/4, segundo 1/4, terceiro 1/4 e quarto 1/4)
     const tamanho = effects.length;
     const quartoQuarto: [number, number] = [
@@ -154,28 +161,30 @@ const page = () => {
         });
 
     return (
-        <div className="bg-stone-400 ">
-            <div className="bg-amber-400 mb-4 text-white text-3xl text-center justify-center">
-                <h1 className="text-center font-extrabold py-12 text-6xl text-red-600">
+        <div className="bg-stone-400 min-w-[400px]">
+            <div
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className="bg-amber-400 mb-4 text-white text-3xl text-center justify-center max-w-full overflow-hidden"
+            >
+                <h1
+                    className={`text-center select-none font-extrabold py-12 text-6xl text-red-600 ${
+                        isHovered
+                            ? `animate__animated animate__${effects[randomIndex]} animate__infinite infinite`
+                            : ''
+                    }`}
+                >
                     Animate.css
                 </h1>
             </div>
-            <div className="flex flex-wrap w-full justify-around gap-4">
-                <div className="flex flex-col items-center gap-4 w-[80%] sm:w-[20%]">
-                    {botoes(...primeiroQuarto)}
-                </div>
-                <div className="flex flex-col items-center gap-4 w-[80%] sm:w-[20%]">
-                    {botoes(...segundoQuarto)}
-                </div>
-                <div className="flex flex-col items-center gap-4 w-[80%] sm:w-[20%]">
-                    {botoes(...terceiroQuarto)}
-                </div>
-                <div className="flex flex-col items-center gap-4 w-[80%] sm:w-[20%]">
-                    {botoes(...quartoQuarto)}
-                </div>
+            <div className="flex flex-wrap justify-around gap-4">
+                <div className={divButtons}>{botoes(...primeiroQuarto)}</div>
+                <div className={divButtons}>{botoes(...segundoQuarto)}</div>
+                <div className={divButtons}>{botoes(...terceiroQuarto)}</div>
+                <div className={divButtons}>{botoes(...quartoQuarto)}</div>
             </div>
         </div>
     );
 };
 
-export default page;
+export default Page;
