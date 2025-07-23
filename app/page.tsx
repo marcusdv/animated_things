@@ -117,35 +117,45 @@ export default function Page() {
 
         // Anima o título usando useRef
         if (tituloRef.current) {
-            tituloRef.current.classList.add(...classe);
-            tituloRef.current.addEventListener('animationend', () => {
-                if (tituloRef.current) {
-                    tituloRef.current.classList.remove(...classe)
-                }
-            })
+            const element = tituloRef.current;
+            
+            // Remove classes anteriores se existirem
+            element.classList.remove('animate__animated');
+            classe.forEach(cls => element.classList.remove(cls));
+            
+            // Adiciona novas classes
+            element.classList.add(...classe);
+            
+            // Função para limpar as classes após a animação
+            const handleAnimationEnd = () => {
+                element.classList.remove(...classe);
+                element.removeEventListener('animationend', handleAnimationEnd);
+            };
+            
+            element.addEventListener('animationend', handleAnimationEnd);
         }
 
     };
 
     return (
-        <div className="min-h-screen grid grid-cols-2 bg-gradient-to-br from-indigo-100 via-white to-cyan-100">
+        <div className="min-h-screen md:grid md:grid-cols-1 bg-gradient-to-br from-indigo-100 via-white to-cyan-100">
 
             {/* Titulo */}
             <div
-                className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white text-center justify-center overflow-hidden shadow-2xl"
+                className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white text-center justify-center overflow-hidden shadow-2xl z-50 min-h-[150px] w-full"
             >
                 <h1
                     ref={tituloRef}
-                    className="fixed top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 text-center select-none font-extrabold py-12 text-5xl sm:text-6xl text-white drop-shadow-lg"
+                    className="select-none font-extrabold py-12 text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-lg"
                 >
                     Animateless
                 </h1>
             </div>
 
             {/* Botões */}
-            <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 flex flex-col items-center justify-center">
+            <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 pt-40 flex flex-col items-center justify-center">
 
-                <div className="grid grid-cols-5 gap-4 max-w-7xl">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-7xl">
                     {effects.map((effect, index) => {
                         // Array de cores vibrantes para os botões
                         const colors = [
@@ -169,7 +179,7 @@ export default function Page() {
                                     transform transition-all duration-200 
                                     hover:scale-105 hover:shadow-lg 
                                     active:scale-95 border-0
-                                    shadow-md text-sm`}
+                                    shadow-md text-xs lg:text-sm min-w-[140px]`}
                                 onClick={(event) =>
                                     handleClick(event, [
                                         'animate__animated',
